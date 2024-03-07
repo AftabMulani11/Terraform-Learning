@@ -9,8 +9,8 @@ resource "aws_vpc" "Terraform_Created" {
 
 #Create a subnet
 resource "aws_subnet" "Terraform_Created_Subnet_1a" {
-  vpc_id     = aws_vpc.Terraform_Created.id
-  cidr_block = "10.10.1.0/24"
+  vpc_id            = aws_vpc.Terraform_Created.id
+  cidr_block        = "10.10.1.0/24"
   availability_zone = "ap-south-1a"
   tags = {
     Name = "Terraform_Created_Subnet"
@@ -53,7 +53,7 @@ resource "aws_security_group" "Terraform_Created_Security_Group" {
     protocol    = "ssh"
     cidr_blocks = ["0.0.0.0/0"]
   }
-  
+
   ingress {
     from_port   = 5000
     to_port     = 5000
