@@ -1,8 +1,8 @@
 #Create a VPC
 resource "aws_vpc" "Terraform_Created" {
-  cidr_block       = "10.10.0.0/16"
-  instance_tenancy = "default"
-  enable_dns_support = true
+  cidr_block           = "10.10.0.0/16"
+  instance_tenancy     = "default"
+  enable_dns_support   = true
   enable_dns_hostnames = true
   tags = {
     Name = "Terraform_Created_VPC"
@@ -11,9 +11,9 @@ resource "aws_vpc" "Terraform_Created" {
 
 #Create a subnet
 resource "aws_subnet" "Terraform_Created_Subnet_1a" {
-  vpc_id            = aws_vpc.Terraform_Created.id
-  cidr_block        = "10.10.1.0/24"
-  availability_zone = "ap-south-1a"
+  vpc_id                  = aws_vpc.Terraform_Created.id
+  cidr_block              = "10.10.1.0/24"
+  availability_zone       = "ap-south-1a"
   map_public_ip_on_launch = true
   tags = {
     Name = "Terraform_Created_Subnet"
