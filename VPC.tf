@@ -51,6 +51,7 @@ resource "aws_security_group" "Terraform_Created_Security_Group" {
   }
 
   ingress {
+    description = "Allow SSH from VPC"
     from_port   = 22
     to_port     = 22
     protocol    = "tcp"
@@ -58,6 +59,7 @@ resource "aws_security_group" "Terraform_Created_Security_Group" {
   }
 
   ingress {
+    description = "Allow Project port from VPC"
     from_port   = 5000
     to_port     = 5000
     protocol    = "tcp"
@@ -65,6 +67,7 @@ resource "aws_security_group" "Terraform_Created_Security_Group" {
   }
 
   egress {
+    description = "Allow all traffic from VPC"
     from_port   = 0
     to_port     = 0
     protocol    = "-1"
