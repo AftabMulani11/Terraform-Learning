@@ -1,0 +1,13 @@
+---
+- name: Install Nginx
+  apt:
+    name: nginx
+    state: latest
+  tags: nginx
+- name: Start Nginx
+  systemd:
+    name: nginx
+    state: started
+    enabled: true
+  tags: nginx
+
