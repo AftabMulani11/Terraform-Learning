@@ -34,7 +34,7 @@ resource "aws_instance" "Terraform_Created_Instance" {
     type        = "ssh"
     user        = "ec2-user"
     private_key = file("${path.module}/Terraform_Created_key.pem")
-    host = aws_instance.Terraform_Created_Instance.public_ip[0]
+    host = aws_instance.Terraform_Created_Instance.public_ip[count.0]
   }
   provisioner "local-exec" {
     command = "ansible-playbook -i ${aws_instance.Terraform_Created_Instance.public_ip}, --private-key ${path.module}/Terraform_Created_key.pem ansible/test.yaml"
