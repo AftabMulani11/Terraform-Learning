@@ -15,7 +15,7 @@ resource "local_file" "Terraform_Created_new_keypair_private" {
 }
 
 resource "aws_instance" "Terraform_Created_Instance" {
-  count                       = 2
+  count                       = 1
   ami                         = "ami-0ba259e664698cbfc"
   instance_type               = "t2.micro"
   vpc_security_group_ids      = [aws_security_group.Terraform_Created_Security_Group.id]
