@@ -39,7 +39,9 @@ resource "aws_instance" "Terraform_Created_Instance" {
     }
   }
   provisioner "local-exec" {
-    command = "ansible-playbook -i ${aws_instance.Terraform_Created_Instance.public_ip}, --private-key ${local.private_key_path} ${path.module}/ansible/test.yaml"
+    command = <<EOF
+  ansible-playbook -i '${aws_instance.Terraform_Created_Instance.public_ip},' --private-key '${local.private_key_path}' '${path.module}/ansible/test.yaml'
+  EOF
   }
 }
 output "nginx_ip" {
