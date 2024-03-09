@@ -29,7 +29,7 @@ resource "aws_instance" "Terraform_Created_Instance" {
     Name = "Terraform-Created-Instance"
   }
   provisioner "remote-exec" {
-    inline = ["echo 'Wait Until SSH is Ready"]
+    inline = ["echo 'Wait Until SSH is Ready'"]
 
     connection {
       type        = "ssh"
@@ -39,13 +39,13 @@ resource "aws_instance" "Terraform_Created_Instance" {
     }
   }
   
-  #provisioner "local-exec" {
-  #  command = "echo '${aws_instance.Terraform_Created_Instance.public_ip},' > inventory.txt"
-  #}
+  provisioner "local-exec" {
+    command = "echo '${aws_instance.Terraform_Created_Instance.public_ip},' > inventory.txt"
+  }
 
-  #provisioner "local-exec" {
-  #    command = "ansible-playbook -i inventory.txt --private-key '${local.private_key_path}' '${path.module}/ansible/test.yaml'"
-  #}
+  provisioner "local-exec" {
+      command = "ansible-playbook -i inventory.txt --private-key '${local.private_key_path}' '${path.module}/ansible/test.yaml'"
+  }
 }
 output "nginx_ip" {
   value = aws_instance.Terraform_Created_Instance.public_ip
