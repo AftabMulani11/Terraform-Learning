@@ -15,13 +15,13 @@ resource "local_file" "Terraform_Created_new_keypair_private" {
 }
 
 resource "aws_instance" "Terraform_Created_Instance" {
-  count                  = 2
-  ami                    = "ami-0ba259e664698cbfc"
-  instance_type          = "t2.micro"
-  vpc_security_group_ids = [aws_security_group.Terraform_Created_Security_Group.id]
-  subnet_id              = aws_subnet.Terraform_Created_Subnet_1a.id
+  count                       = 2
+  ami                         = "ami-0ba259e664698cbfc"
+  instance_type               = "t2.micro"
+  vpc_security_group_ids      = [aws_security_group.Terraform_Created_Security_Group.id]
+  subnet_id                   = aws_subnet.Terraform_Created_Subnet_1a.id
   associate_public_ip_address = true
-  key_name               = aws_key_pair.Terraform_Created_new_keypair.key_name
+  key_name                    = aws_key_pair.Terraform_Created_new_keypair.key_name
   tags = {
     Name = "Terraform-Created-Instance"
   }
