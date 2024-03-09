@@ -65,6 +65,22 @@ resource "aws_security_group" "Terraform_Created_Security_Group" {
   }
 
   ingress {
+    description = "Allow http from VPC"
+    from_port   = 80
+    to_port     = 80
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  ingress {
+    description = "Allow https from VPC"
+    from_port   = 443
+    to_port     = 443
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  ingress {
     description = "Allow Project port from VPC"
     from_port   = 5000
     to_port     = 5000
