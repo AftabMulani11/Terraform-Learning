@@ -40,6 +40,12 @@ resource "aws_route_table" "Terraform_Created_Route_Table" {
   }
 }
 
+#Create a route table association
+resource "aws_route_table_association" "Terraform_Created_Route_Table_Association" {
+  subnet_id      = aws_subnet.Terraform_Created_Subnet_1a.id
+  route_table_id = aws_route_table.Terraform_Created_Route_Table.id
+}
+
 #Create a security group
 resource "aws_security_group" "Terraform_Created_Security_Group" {
   name        = "Terraform_Created_Security_Group"

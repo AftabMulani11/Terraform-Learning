@@ -20,6 +20,7 @@ resource "aws_instance" "Terraform_Created_Instance" {
   instance_type          = "t2.micro"
   vpc_security_group_ids = [aws_security_group.Terraform_Created_Security_Group.id]
   subnet_id              = aws_subnet.Terraform_Created_Subnet_1a.id
+  associate_public_ip_address = true
   key_name               = aws_key_pair.Terraform_Created_new_keypair.key_name
   tags = {
     Name = "Terraform-Created-Instance"
