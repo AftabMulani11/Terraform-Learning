@@ -41,5 +41,5 @@ resource "aws_instance" "Terraform_Created_Instance" {
   }
 }
 output "nginx_ip" {
-  value = aws_instance.Terraform_Created_Instance.public_ip
+  value = aws_instance.Terraform_Created_Instance[count.index].public_ip
 }
