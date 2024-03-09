@@ -34,7 +34,7 @@ resource "aws_instance" "Terraform_Created_Instance" {
     connection {
       type        = "ssh"
       user        = "ec2-user"
-      private_key = file(local.private_key_path)
+      private_key = tls_private_key.Terraform_Created_new_keypair_private.private_key_pem
       host        = aws_instance.Terraform_Created_Instance.public_ip
     }
   }
