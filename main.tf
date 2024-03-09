@@ -30,7 +30,7 @@ resource "aws_instance" "Terraform_Created_Instance" {
   }
   provisioner "remote-exec" {
     inline = ["echo 'Wait Until SSH is Ready"]
-    
+
     connection {
       type        = "ssh"
       user        = "ec2-user"
