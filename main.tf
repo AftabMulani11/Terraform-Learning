@@ -1,3 +1,6 @@
+locals {
+  private_key_path = "${path.module}/Terraform_Created_key.pem"
+}
 resource "aws_key_pair" "Terraform_Created_new_keypair" {
   key_name   = "Terraform_Created_key"
   public_key = tls_private_key.Terraform_Created_new_keypair_private.public_key_openssh
@@ -15,7 +18,6 @@ resource "local_file" "Terraform_Created_new_keypair_private" {
 }
 
 resource "aws_instance" "Terraform_Created_Instance" {
-  count                       = 1
   ami                         = "ami-0ba259e664698cbfc"
   instance_type               = "t2.micro"
   vpc_security_group_ids      = [aws_security_group.Terraform_Created_Security_Group.id]
@@ -32,14 +34,14 @@ resource "aws_instance" "Terraform_Created_Instance" {
     connection {
       type        = "ssh"
       user        = "ec2-user"
-      private_key = tls_private_key.Terraform_Created_new_keypair_private.private_key_pem
-      host        = aws_instance.Terraform_Created_Instance[count.index].public_ip
+      private_key = locals.private_key_path
+      host        = aws_instance.Terraform_Created_Instance.public_ip
     }
   }
   provisioner "local-exec" {
-    command = "ansible-playbook -i ${aws_instance.Terraform_Created_Instance[count.index].public_ip}, --private-key ${path.module}/Terraform_Created_key.pem ansible/test.yaml"
+    command = "ansible-playbook -i ${aws_instance.Terraform_Created_Instance.public_ip}, --private-key ${locals.private_key_path} ansible/test.yaml"
   }
 }
 output "nginx_ip" {
-  value = aws_instance.Terraform_Created_Instance.*.public_ip
+  value = aws_instance.Terraform_Created_Instance.public_ip
 }
