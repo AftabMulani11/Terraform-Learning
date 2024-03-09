@@ -26,15 +26,15 @@ resource "aws_instance" "Terraform_Created_Instance" {
     Name = "Terraform-Created-Instance"
   }
   provisioner "remote-exec" {
-  inline = [
-    "echo 'Wait Until SSH is Ready"
-  ]
+    inline = [
+      "echo 'Wait Until SSH is Ready"
+    ]
   }
   connection {
     type        = "ssh"
     user        = "ec2-user"
     private_key = tls_private_key.Terraform_Created_new_keypair_private.private_key_pem
-    host = aws_instance.Terraform_Created_Instance[count.index].public_ip
+    host        = aws_instance.Terraform_Created_Instance[count.index].public_ip
   }
   provisioner "local-exec" {
     command = "ansible-playbook -i ${aws_instance.Terraform_Created_Instance[count.index].public_ip}, --private-key ${path.module}/Terraform_Created_key.pem ansible/test.yaml"
