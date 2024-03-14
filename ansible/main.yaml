@@ -1,9 +1,10 @@
 ---
-- name: Install Nginx
+- name: Install all the dependencies
   hosts: all
   remote_user: ec2-user
   become: true
 
   roles:
-    - nginx
+    - Install
+    - docker
 

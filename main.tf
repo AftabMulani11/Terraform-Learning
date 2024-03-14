@@ -19,7 +19,7 @@ resource "local_file" "Terraform_Created_new_keypair_private" {
 }
 
 resource "aws_instance" "Terraform_Created_Instance" {
-  ami                         = "ami-0ba259e664698cbfc"
+  ami                         = data.aws_ami.Terraform_Created_AMI.id
   instance_type               = "t2.micro"
   vpc_security_group_ids      = [aws_security_group.Terraform_Created_Security_Group.id]
   subnet_id                   = aws_subnet.Terraform_Created_Subnet_1a.id
@@ -38,10 +38,10 @@ resource "aws_instance" "Terraform_Created_Instance" {
       host        = aws_instance.Terraform_Created_Instance.public_ip
     }
   }
-  
+
   provisioner "local-exec" {
-  command = "ansible-playbook -i ${aws_instance.Terraform_Created_Instance.public_ip}, --private-key ${local.private_key_path} ansible/test.yaml"
-}
+    command = "ansible-playbook -i ${aws_instance.Terraform_Created_Instance.public_ip}, --private-key ${local.private_key_path} ansible/main.yaml"
+  }
 }
 output "nginx_ip" {
   value = aws_instance.Terraform_Created_Instance.public_ip
