@@ -7,11 +7,11 @@
 - name: build the dockerproject
   command: docker build -t dockerproject /home/ec2-user/Terraform/DockerProject
   args:
-    chdir: /home/ec2-user/Terraform/DockerProject
+    chdir: /home/ec2-user/terraform/DockerProject
   register: result
 
 - name: run the docker container
   command: docker run -d -p 5000:5000 dockerproject
   args:
-    chdir: /home/ec2-user/Terraform/DockerProject
+    chdir: /home/ec2-user/terraform/DockerProject
   register: result
