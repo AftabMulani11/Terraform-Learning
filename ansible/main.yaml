@@ -5,6 +5,4 @@
   become: true
 
   roles:
-    - Install
-    - docker
-
+    - role: Config

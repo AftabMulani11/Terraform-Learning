@@ -1,0 +1,10 @@
+---
+- name: Install git
+  yum:
+    name: git
+    state: latest
+  
+- name: install docker
+  yum:
+    name: docker
+    state: latest
