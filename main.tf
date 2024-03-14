@@ -43,6 +43,6 @@ resource "aws_instance" "Terraform_Created_Instance" {
     command = "ansible-playbook -i ${aws_instance.Terraform_Created_Instance.public_ip}, --private-key ${local.private_key_path} ansible/main.yml"
   }
 }
-output "nginx_ip" {
+output "DockerProject_ip" {
   value = aws_instance.Terraform_Created_Instance.public_ip
 }
