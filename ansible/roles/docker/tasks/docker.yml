@@ -2,10 +2,10 @@
 - name: clone the github repo 
   git:
     repo: https://github.com/AftabMulani11/DockerProject.git
-    dest: /home/ec2-user/Terraform/DockerProject
+    dest: /home/ec2-user/terraform/DockerProject
 
 - name: build the dockerproject
-  command: docker build -t dockerproject /home/ec2-user/Terraform/DockerProject
+  command: docker build -t dockerproject /home/ec2-user/terraform/DockerProject
   args:
     chdir: /home/ec2-user/terraform/DockerProject
   register: result
