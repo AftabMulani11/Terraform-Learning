@@ -1,11 +1,12 @@
 pipeline{
-    agent any
     parameters{
         booleanParam(defaultValue: true, description: 'Should we approve the deployment?', name: 'autoApprove')
+    }
     environment{
         AWS_ACCESS_KEY_ID = credentials('aws-access-key-id')
         AWS_SECRET_ACCESS_KEY = credentials('aws-secret-access-key')
     }
+    agent any
     stages{
         stage('checkout'){
             steps{
@@ -43,4 +44,4 @@ pipeline{
             }
         }
     }
-}}
+}
