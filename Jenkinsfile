@@ -8,14 +8,6 @@ pipeline{
     }
     agent any
     stages{
-        stage('checkout'){
-            steps{
-                script{
-                    sh 'git init'
-                    sh 'git pull https://github.com/AftabMulani11/Terraform-Learning.git main'
-                }
-            }
-        }
         stage('Plan the infrastructure'){
             steps{
                 sh 'pwd;cd terraform/ ;cd terraform/ ; terraform init'
