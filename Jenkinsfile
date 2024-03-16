@@ -11,9 +11,8 @@ pipeline{
         stage('checkout'){
             steps{
                 script{
-                    dir('terraform'){
-                        git "https://github.com/AftabMulani11/Terraform-Learning.git"
-                    }
+                    sh 'git init'
+                    sh 'git pull https://github.com/AftabMulani11/Terraform-Learning.git main'
                 }
             }
         }
