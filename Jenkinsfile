@@ -10,9 +10,9 @@ pipeline {
     stages{
         stage('Plan the infrastructure'){
             steps{
-                sh 'pwd;cd terraform/ ;terraform init'
-                sh "pwd;cd terraform/ ;terraform plan -out tfplan"
-                sh 'pwd;cd terraform/ ;terraform show -no-color tfplan > tfplan.txt'
+                cmd 'pwd;cd terraform/ ;terraform init'
+                cmd "pwd;cd terraform/ ;terraform plan -out tfplan"
+                cmd 'pwd;cd terraform/ ;terraform show -no-color tfplan > tfplan.txt'
             }
         }
         stage('Approval of Plan'){
@@ -31,7 +31,7 @@ pipeline {
         }
         stage('Apply the infrastructure'){
             steps{
-                sh 'pwd;cd terraform/ ;cd terraform/ ; terraform apply -auto-approve tfplan'
+                cmd 'pwd;cd terraform/ ;cd terraform/ ; terraform apply -auto-approve tfplan'
             }
         }
     }
