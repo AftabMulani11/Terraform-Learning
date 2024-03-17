@@ -10,9 +10,10 @@ pipeline {
     stages{
         stage('Plan the infrastructure'){
             steps{
-                bat 'cd terraform/ ;terraform init'
-                bat "cd terraform/ ;terraform plan -out tfplan"
-                bat 'cd terraform/ ;terraform show -no-color tfplan > tfplan.txt'
+                bat 'cd terraform/'
+                bat 'erraform init'
+                bat "terraform plan -out tfplan"
+                bat 'terraform show -no-color tfplan > tfplan.txt'
             }
         }
         stage('Approval of Plan'){
@@ -31,7 +32,8 @@ pipeline {
         }
         stage('Apply the infrastructure'){
             steps{
-                bat 'cd terraform/ ; terraform apply --auto-approve tfplan'
+                bat 'cd terraform/'
+                bat 'terraform apply --auto-approve tfplan'
             }
         }
     }
