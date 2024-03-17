@@ -39,4 +39,11 @@ pipeline {
             }
         }
     }
+    post{
+        failure{
+            dir('terraform'){
+                bat 'terraform destroy --auto-approve'
+            }
+        }
+    }
 }
