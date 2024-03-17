@@ -11,7 +11,7 @@ pipeline {
         stage('Plan the infrastructure'){
             steps{
                 bat 'cd terraform/'
-                bat 'erraform init'
+                bat 'terraform init'
                 bat "terraform plan -out tfplan"
                 bat 'terraform show -no-color tfplan > tfplan.txt'
             }
