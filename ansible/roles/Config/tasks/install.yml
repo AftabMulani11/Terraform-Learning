@@ -4,7 +4,7 @@
     name: git
     state: latest
   
-- name: install docker
+- name: Install docker
   yum:
     name: docker
     state: latest

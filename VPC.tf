@@ -1,5 +1,5 @@
 #Create a VPC
-resource "aws_vpc" "Terraform_Created" {
+resource "aws_vpc" "Terraform_Created_VPC" {
   cidr_block           = "10.10.0.0/16"
   instance_tenancy     = "default"
   enable_dns_support   = true
