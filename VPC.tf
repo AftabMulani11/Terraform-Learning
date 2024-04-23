@@ -11,7 +11,7 @@ resource "aws_vpc" "Terraform_Created_VPC" {
 
 #Create a subnet
 resource "aws_subnet" "Terraform_Created_Subnet_1a" {
-  vpc_id                  = aws_vpc.Terraform_Created.id
+  vpc_id                  = aws_vpc.Terraform_Created_VPC.id
   cidr_block              = "10.10.1.0/24"
   availability_zone       = "ap-south-1a"
   map_public_ip_on_launch = true
@@ -22,7 +22,7 @@ resource "aws_subnet" "Terraform_Created_Subnet_1a" {
 
 #Create a internet gateway
 resource "aws_internet_gateway" "Terraform_Created_Internet_Gateway" {
-  vpc_id = aws_vpc.Terraform_Created.id
+  vpc_id = aws_vpc.Terraform_Created_VPC.id
   tags = {
     Name = "Terraform_Created_Internet_Gateway"
   }
@@ -30,7 +30,7 @@ resource "aws_internet_gateway" "Terraform_Created_Internet_Gateway" {
 
 #Create a route table
 resource "aws_route_table" "Terraform_Created_Route_Table" {
-  vpc_id = aws_vpc.Terraform_Created.id
+  vpc_id = aws_vpc.Terraform_Created_VPC.id
   route {
     cidr_block = "0.0.0.0/0"
     gateway_id = aws_internet_gateway.Terraform_Created_Internet_Gateway.id
@@ -50,7 +50,7 @@ resource "aws_route_table_association" "Terraform_Created_Route_Table_Associatio
 resource "aws_security_group" "Terraform_Created_Security_Group" {
   name        = "Terraform_Created_Security_Group"
   description = "A test Security Group to Check working of Terraform"
-  vpc_id      = aws_vpc.Terraform_Created.id
+  vpc_id      = aws_vpc.Terraform_Created_VPC.id
 
   tags = {
     Name = "allow_tls"
